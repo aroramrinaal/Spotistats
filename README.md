@@ -8,3 +8,13 @@ In this project, we will explore various aspects of Spotify usage data, includin
 - The duration of usage and more
 
 The dataset used here showcases the personal usage of Spotify, downloaded from Spotify's Privacy Setting section, which allows anyone to download their personal usage data.
+
+For this Exploratory Data Analysis (EDA) project, we will utilize several tools and libraries:
+- **Jupyter Notebook**: An open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text.
+- **Python**: A powerful programming language known for its readability and vast library support.
+- **Libraries**:
+  - `numpy`: A library for numerical computations.
+  - `pandas`: A powerful data manipulation and analysis library.
+  - `matplotlib`: A plotting library for creating static, animated, and interactive visualizations.
+  - `seaborn`: A statistical data visualization library based on matplotlib.
+  - `wordcloud`: A library for generating word clouds from text.
