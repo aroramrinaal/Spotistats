@@ -20,3 +20,7 @@ For this Exploratory Data Analysis (EDA) project, we will utilize several tools 
   - `matplotlib`: A plotting library for creating static, animated, and interactive visualizations.
   - `seaborn`: A statistical data visualization library based on matplotlib.
   - `wordcloud`: A library for generating word clouds from text.
+
+## Contents of the .zip File
+
+When you download your Spotify extended streaming history, you will receive a .zip file. After extracting the .zip file, the folder structure will look like this:
