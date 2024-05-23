@@ -50,3 +50,20 @@ plt.xticks(rotation=45, ha='right')
 plt.show()
 ```
 ![output](https://github.com/aroramrinaal/Spotistats/assets/90490253/751484f1-8ebb-45ed-8012-ec0822b972c5)
+
+### Visualization of Top 10 Favorite Artists by Listening Count
+
+```python
+# Top 10 artists by Count
+top_10_artists_count = top_artists_df.sort_values(by="Count", ascending=False).head(10)
+
+# Visualization of top 10 unique artists by play count
+plt.figure(figsize=(10, 5))
+sns.barplot(x=top_10_artists_count.index, y=top_10_artists_count["Count"], palette='magma')
+plt.xlabel('Artists')
+plt.ylabel('No. of Times Songs Played')
+plt.title('My Top 10 Favourite Artist (based on Counts)')
+plt.xticks(rotation=45, ha='right')
+plt.show()
+```
+![output](https://github.com/aroramrinaal/Spotistats/assets/90490253/8bfbbe18-4703-4935-bdf6-423fb0885464)
