@@ -67,3 +67,36 @@ plt.xticks(rotation=45, ha='right')
 plt.show()
 ```
 ![output](https://github.com/aroramrinaal/Spotistats/assets/90490253/8bfbbe18-4703-4935-bdf6-423fb0885464)
+
+## Percentage of Unique Tracks
+
+In this project, we analyze the percentage of unique tracks in the listening history and visualize it using a pie chart.
+
+### Visualization of Unique Tracks Percentage
+
+```python
+# Calculate the number of unique tracks
+unique_tracks = spotify_stream_df["master_metadata_track_name"].nunique()
+
+# Calculating the total number of track entries
+total_tracks = spotify_stream_df["master_metadata_track_name"].count()
+
+# Calculate the percentage of unique tracks
+unique_tracks_percentage = (unique_tracks / total_tracks) * 100
+
+# Prepare data for the pie chart
+unique_tracks_list = np.array([unique_tracks, total_tracks - unique_tracks])
+unique_tracks_list_labels = ["Unique Tracks", "Non Unique Tracks"]
+
+# Create a pie chart
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.pie(unique_tracks_list, labels=unique_tracks_list_labels, autopct='%1.1f%%', explode=[0.05, 0.05], startangle=180, shadow=True)
+plt.title("Unique Tracks Percentage")
+plt.show()
+
+# Print the calculated percentages for reference
+print(f"Number of unique tracks: {unique_tracks}")
+print(f"Total number of track entries: {total_tracks}")
+print(f"Percentage of unique tracks: {unique_tracks_percentage:.2f}%")
+```
+![5114962f-031d-46b3-ade1-5080e609aed5](https://github.com/aroramrinaal/Spotistats/assets/90490253/2deeeea6-59e9-4b49-ad16-2e695d8449e0)
