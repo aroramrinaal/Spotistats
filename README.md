@@ -100,3 +100,57 @@ print(f"Total number of track entries: {total_tracks}")
 print(f"Percentage of unique tracks: {unique_tracks_percentage:.2f}%")
 ```
 ![5114962f-031d-46b3-ade1-5080e609aed5](https://github.com/aroramrinaal/Spotistats/assets/90490253/2deeeea6-59e9-4b49-ad16-2e695d8449e0)
+
+## Day Wise Percentage of Spotify Streaming
+
+In this project, we analyze the distribution of Spotify streaming activity across different days of the week and visualize it using a pie chart.
+
+### Visualization of Day Wise Percentage of Spotify Streaming
+
+```python
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.pie(spotify_stream_df["day-name"].value_counts(), labels=spotify_stream_df["day-name"].value_counts().index, autopct='%1.1f%%', startangle=180, shadow=True)
+ax.set(title="Day wise % of Spotify Streaming")
+plt.show()
+```
+![3515fe61-a713-4a95-b79b-f0543643be2f](https://github.com/aroramrinaal/Spotistats/assets/90490253/b99d87a3-9594-47a1-9a9b-89de13db8667)
+
+## Average Usage Over a Day
+
+In this project, we analyze the distribution of Spotify streaming activity over the hours of a day and visualize it using a histogram with a kernel density estimate (KDE).
+
+### Visualization of Average Distribution of Streaming Over Day Hours
+
+```python
+# Average Usage over a day
+fig, ax = plt.subplots(figsize=(12,8))
+ax.set(title="Average Distribution of Streaming Over Day Hours", xlabel="Hours (in 24 hour format)", ylabel="Songs Played")
+sns.histplot(spotify_stream_df["hours"], bins=24, kde=True, color="darkgreen")
+plt.show()
+```
+![97a4b2fb-5254-4559-be90-25d065ba7e54](https://github.com/aroramrinaal/Spotistats/assets/90490253/7c31fe2b-5de7-4abe-aadf-b6f7979f973e)
+
+## Top 100 Favorite Artists
+
+In this project, we generate a word cloud to visualize the top 100 favorite artists based on the number of times their songs were played.
+
+### Visualization of Top 100 Favorite Artists
+
+```python
+# Sort artists by Count
+top_artists_df = top_artists_df.sort_values(by='Count', ascending=False)
+
+# Select the top 100 artists
+top_100_artists = top_artists_df.head(100)
+
+# Generate the word cloud
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(top_100_artists['Count'])
+
+# Display the word cloud
+plt.figure(figsize=(14, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.title('Top 100 Favorite Artists')
+plt.show()
+```
+![edcf03df-1f5b-43e8-83ea-2ae145d74023](https://github.com/aroramrinaal/Spotistats/assets/90490253/05853e3b-79f4-4041-9cb0-96d52b1b877c)
