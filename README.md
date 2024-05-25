@@ -154,3 +154,59 @@ plt.title('Top 100 Favorite Artists')
 plt.show()
 ```
 ![edcf03df-1f5b-43e8-83ea-2ae145d74023](https://github.com/aroramrinaal/Spotistats/assets/90490253/05853e3b-79f4-4041-9cb0-96d52b1b877c)
+
+## Active Usage in a Day Over a Week
+
+In this project, we analyze the active usage of Spotify over different hours of the day throughout the week and visualize it using a heatmap.
+
+### Visualization of Active Usage in a Day Over a Week
+
+```python
+# Extract day of the week and hour from 'Play-Time'
+spotify_stream_df['day_of_week'] = spotify_stream_df['Play-Time'].dt.day_name()
+spotify_stream_df['hour'] = spotify_stream_df['Play-Time'].dt.hour
+
+# Aggregate data by day of the week and hour
+usage_by_day_hour = spotify_stream_df.groupby(['day_of_week', 'hour']).size().unstack(fill_value=0)
+
+# Reorder the days of the week
+days_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+usage_by_day_hour = usage_by_day_hour.reindex(days_order)
+
+# Create a heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(usage_by_day_hour, cmap='Blues', annot=True, fmt='d', cbar_kws={'label': 'Number of Songs Played'})
+plt.title('Spotify Usage (Active Usage in a Day Over a Week)')
+plt.xlabel('Hour of Day')
+plt.ylabel('Day of Week')
+plt.show()
+```
+![203d4346-7dbf-4134-a961-30272869c7ed](https://github.com/aroramrinaal/Spotistats/assets/90490253/f873f1ae-d860-4c85-98eb-fe8c7cc1139d)
+
+## Number of Songs Played Each Day
+
+In this project, we analyze the number of songs played each day and visualize it using a scatter plot.
+
+### Visualization of Number of Songs Played Each Day
+
+```python
+# Aggregate data by date
+songs_per_day = spotify_stream_df.groupby(spotify_stream_df['Play-Time'].dt.date)['Count'].sum().reset_index()
+songs_per_day.columns = ['Date', 'Number of Songs Played']
+
+# Identify the day with maximum songs played
+max_songs_day = songs_per_day[songs_per_day['Number of Songs Played'] == songs_per_day['Number of Songs Played'].max()]
+
+print(f"The day with the maximum number of songs played is: {max_songs_day['Date'].values[0]} with {max_songs_day['Number of Songs Played'].values[0]} songs.")
+
+# Plot a scatter plot to show all the dates
+plt.figure(figsize=(12, 7))
+sns.scatterplot(data=songs_per_day, x='Date', y='Number of Songs Played', hue='Number of Songs Played', palette='viridis', legend=None)
+plt.title('Number of Songs Played Each Day')
+plt.xlabel('Date')
+plt.ylabel('Number of Songs Played')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+```
+![f57e95e6-b85a-425e-944e-91c325683d58](https://github.com/aroramrinaal/Spotistats/assets/90490253/13c57a4b-06e8-4576-95b6-c98bea1f0dc9)
